@@ -1,4 +1,4 @@
-# Sensor Bridge Demo
+# steute Sensor Bridge & Node-RED - Demo
 
 A simple Node-RED flow that receives notifications from the steute Sensor Bridge.
 
