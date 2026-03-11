@@ -1,55 +1,273 @@
 [
     {
-        "id": "3388f8a18921bb9b",
+        "id": "9dfc7d2375a7a65a",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Incoming data",
         "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "b813287410ca81da",
-        "type": "inject",
-        "z": "3388f8a18921bb9b",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
+        "id": "644e9bfcd46298d2",
+        "type": "group",
+        "z": "9dfc7d2375a7a65a",
+        "name": "handle incoming Notifications",
+        "style": {
+            "stroke": "none",
+            "fill": "#addb7b",
+            "fill-opacity": "0.5",
+            "label": true
+        },
+        "nodes": [
+            "7c505a3c3a3d7423",
+            "e5bf53250502795b",
+            "8a510c4a28d7a288",
+            "2982228238aadee4",
+            "1aed67ec896f0497",
+            "a3a618eda0c2209c",
+            "75f79a06f6a55e0d",
+            "464f6eec6e726f10",
+            "9457c47d22fb91a5",
+            "e5ed580a15a2ef52",
+            "e6de67083f70621e",
+            "987c3ad798982847",
+            "2a80d554a30d720e"
         ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 120,
-        "y": 100,
+        "x": 34,
+        "y": 39,
+        "w": 1112,
+        "h": 342
+    },
+    {
+        "id": "e6de67083f70621e",
+        "type": "junction",
+        "z": "9dfc7d2375a7a65a",
+        "g": "644e9bfcd46298d2",
+        "x": 500,
+        "y": 320,
         "wires": [
             [
-                "14e3d12b40fe78bf"
+                "a3a618eda0c2209c",
+                "9457c47d22fb91a5"
             ]
         ]
     },
     {
-        "id": "14e3d12b40fe78bf",
+        "id": "7c505a3c3a3d7423",
+        "type": "http in",
+        "z": "9dfc7d2375a7a65a",
+        "g": "644e9bfcd46298d2",
+        "name": "/notifications",
+        "url": "/notifications",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 200,
+        "wires": [
+            [
+                "2982228238aadee4"
+            ]
+        ]
+    },
+    {
+        "id": "e5bf53250502795b",
         "type": "debug",
-        "z": "3388f8a18921bb9b",
-        "name": "debug 1",
+        "z": "9dfc7d2375a7a65a",
+        "g": "644e9bfcd46298d2",
+        "name": "log switchEvent",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 300,
-        "y": 100,
+        "x": 900,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "8a510c4a28d7a288",
+        "type": "http response",
+        "z": "9dfc7d2375a7a65a",
+        "g": "644e9bfcd46298d2",
+        "name": "HTTP OK 200",
+        "statusCode": "200",
+        "headers": {},
+        "x": 640,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "2982228238aadee4",
+        "type": "switch",
+        "z": "9dfc7d2375a7a65a",
+        "g": "644e9bfcd46298d2",
+        "name": "switch messageType",
+        "property": "payload.messages[0].messageType",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "switchEvent",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "missingSwitchWakeupWarning",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 340,
+        "y": 200,
+        "wires": [
+            [
+                "75f79a06f6a55e0d",
+                "8a510c4a28d7a288",
+                "987c3ad798982847"
+            ],
+            [
+                "464f6eec6e726f10",
+                "8a510c4a28d7a288"
+            ],
+            [
+                "e6de67083f70621e"
+            ]
+        ]
+    },
+    {
+        "id": "1aed67ec896f0497",
+        "type": "debug",
+        "z": "9dfc7d2375a7a65a",
+        "g": "644e9bfcd46298d2",
+        "name": "log missingSwitchWakeupWarning",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "a3a618eda0c2209c",
+        "type": "debug",
+        "z": "9dfc7d2375a7a65a",
+        "g": "644e9bfcd46298d2",
+        "name": "log unknow protocol",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 340,
+        "wires": [],
+        "icon": "node-red/alert.svg"
+    },
+    {
+        "id": "75f79a06f6a55e0d",
+        "type": "function",
+        "z": "9dfc7d2375a7a65a",
+        "g": "644e9bfcd46298d2",
+        "name": "extract messages[0]",
+        "func": "return msg.payload.messages[0];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 180,
+        "wires": [
+            [
+                "e5bf53250502795b",
+                "e5ed580a15a2ef52"
+            ]
+        ]
+    },
+    {
+        "id": "464f6eec6e726f10",
+        "type": "function",
+        "z": "9dfc7d2375a7a65a",
+        "g": "644e9bfcd46298d2",
+        "name": "extract messages[0]",
+        "func": "return msg.payload.messages[0];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 220,
+        "wires": [
+            [
+                "1aed67ec896f0497"
+            ]
+        ]
+    },
+    {
+        "id": "9457c47d22fb91a5",
+        "type": "http response",
+        "z": "9dfc7d2375a7a65a",
+        "g": "644e9bfcd46298d2",
+        "name": "HTTP BadRequest 400",
+        "statusCode": "400",
+        "headers": {},
+        "x": 670,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "e5ed580a15a2ef52",
+        "type": "link out",
+        "z": "9dfc7d2375a7a65a",
+        "g": "644e9bfcd46298d2",
+        "name": "single notification message",
+        "mode": "link",
+        "links": [],
+        "x": 835,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "987c3ad798982847",
+        "type": "link out",
+        "z": "9dfc7d2375a7a65a",
+        "g": "644e9bfcd46298d2",
+        "name": "raw data",
+        "mode": "link",
+        "links": [],
+        "x": 575,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "2a80d554a30d720e",
+        "type": "comment",
+        "z": "9dfc7d2375a7a65a",
+        "g": "644e9bfcd46298d2",
+        "name": "http://node-red:1880/nodered/notifications",
+        "info": "",
+        "x": 220,
+        "y": 140,
         "wires": []
     }
 ]

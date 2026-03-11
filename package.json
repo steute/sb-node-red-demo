@@ -1,7 +1,7 @@
 {
     "name": "node-red-sb-demo",
-    "description": "A Node-RED Project",
-    "version": "0.0.1",
+    "description": "Sensor Bridge Demo",
+    "version": "0.1.0",
     "dependencies": {},
     "node-red": {
         "settings": {
