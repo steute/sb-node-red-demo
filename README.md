@@ -2,6 +2,8 @@
 
 A simple Node-RED flow that receives notifications from the steute Sensor Bridge.
 
+![Node-RED flow for Sensor Bridge](assets/sb-node-red-demo-flow.png)
+
 ## Import the Node-RED project
 
 See https://nodered.org/docs/user-guide/projects/ for more information about Node-RED projects.
