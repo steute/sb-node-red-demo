@@ -11,7 +11,7 @@ See https://nodered.org/docs/user-guide/projects/ for more information about Nod
 - Enable Projects in Node-RED (if not already done).
 - Create a project.
 - Select **Clone Repository**.
-- Set the Git repository URL to `https://github.com/steute/node-red-sb-demo.git`.
+- Set the Git repository URL to `https://github.com/steute/sb-node-red-demo.git`.
 - Leave **Username**, **Password**, and **Credential encryption key** empty.
 - Clone the repository.
 
