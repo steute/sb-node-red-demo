@@ -1,6 +1,6 @@
 # steute Sensor Bridge & Node-RED - Demo
 
-A simple Node-RED flow that receives notifications from the steute Sensor Bridge.
+A simple Node-RED flow that receives notifications from the steute Sensor Bridge (Version >= 3.0.0) and logs the incoming data to the debug console.
 
 ![Node-RED flow for Sensor Bridge](assets/sb-node-red-demo-flow.png)
 
@@ -27,7 +27,7 @@ In the steute Sensor Bridge web interface:
 - Click **Test Notification**.
 - Click **Save** at the bottom of the page.
 
-After you click **Test Notification**, you should see incoming data in the Node-RED debug window. The incoming `msg` object from the **log switchEvent** node should look like this:
+After you click **Test Notification**, you should see incoming data in the Node-RED debug window. The incoming `msg.payload` object from the **log switchEvent** debug node should look like this:
 
 ```json
 {
@@ -46,8 +46,7 @@ After you click **Test Notification**, you should see incoming data in the Node-
   "counter": 4,
   "timestamp": 1665063029699,
   "state": 1,
-  "flags": 0,
-  "_msgid": "2d916e6010cab466"
+  "flags": 0
 }
 ```
 
